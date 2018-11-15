@@ -219,4 +219,43 @@ public class EjbActividad implements IEjbActividad {
 		
 	}
 
+	//vid 48 - p23 - 9:50
+	@Override
+	public void changeStatusActividad(int idActividad,boolean estado) {
+try {
+			
+			IDaoActividad iDaoActividad = new DaoActividad();
+			
+			emf = Persistence.createEntityManagerFactory("appwebagenda");// el nombre en persistence.xml
+			em = emf.createEntityManager();
+			et = em.getTransaction();
+
+			et.begin(); // comienza la transaccion
+			
+			actividad=iDaoActividad.getByIdActividad(em, idActividad);
+			actividad.setEstado(estado);
+			iDaoActividad.changeStatus(em, actividad);
+			
+			et.commit();
+
+			
+		} catch (Exception ex) {
+
+			System.out.println("Error :" + ex.getMessage());
+		} finally {
+			if (em != null) {
+
+				em.close();
+				em = null;
+
+			}
+			if (emf != null) {
+				emf.close();
+				emf = null;
+			}
+
+			et = null;
+		}
+		
+	}
 }

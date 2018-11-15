@@ -35,6 +35,8 @@
 					<th>Fecha inicio</th>
 					<th>Fecha fin</th>
 					<th>Fecha registro</th>
+					<th></th>
+					<th></th>
 				</tr>
 			</thead>
 			<tbody>
@@ -46,16 +48,33 @@
                    <td>${item.isEstado()? "Finalizado":"Pendiente"}</td>
                    <td>${item.getFechaHoraInicio()}</td>
                    <td>${item.getFechaHoraFin()}</td>
-                   <td>${item.getFechaRegistro()}</td>										
-				</tr>
-				
-			
+                   <td>${item.getFechaRegistro()}</td> 
+                   <td>
+                   	   <c:if test="${item.isEstado()==true}">
+	                   		<input type="button" value="Restaurar actividad" onclick="restaurarActividad(${item.getIdActividad()});">
+	                   </c:if> 	
+	                   <c:if test="${item.isEstado()==false}">
+	                   		<input type="button" value="Terminar actividad" onclick="terminarActividad(${item.getIdActividad()});">
+	                   </c:if>                             
+		   										
+				   </td>	
+				</tr>			
 			</c:forEach>
 			</tbody>
 		</table>
 	</section>
 
 </body>
+<script>
+function terminarActividad(idActividad)
+{
+	window.location.href='/appwebagenda/ServletActividadCambiarEstado?idActividad='+ idActividad+ '&estado=true';
+}
 
+function restaurarActividad(idActividad)
+{
+	window.location.href='/appwebagenda/ServletActividadCambiarEstado?idActividad='+ idActividad+ '&estado=false';
+}
+</script>
 
 </html>

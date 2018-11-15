@@ -37,8 +37,19 @@ public class DaoActividad implements IDaoActividad {
 		return query.getResultList();
 	}
 
-	
-	
+	//vid 48 - p23
+	@Override
+	public Tactividad getByIdActividad(EntityManager em, int idActividad) throws Exception
+	{
+		return em.find(Tactividad.class, idActividad);
+	}
+	@Override
+	public boolean changeStatus(EntityManager em, Tactividad actividad)throws Exception {
+		
+		em.merge(actividad);
+		
+		return true;
+	}
 	
 	
 

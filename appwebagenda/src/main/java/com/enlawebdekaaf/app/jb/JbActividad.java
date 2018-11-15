@@ -22,6 +22,9 @@ public class JbActividad implements Serializable {
 	private String fechaModificacion;
 	private String fechaRegistro;
 	private String lugar;
+	
+	
+	
 	/**
 	 * @return the idActividad
 	 */

@@ -19,5 +19,6 @@ public interface IEjbActividad {
 	public void getByIdUsuario(int idUsuario);
 	public void getByIdUsuarioAndEstado(int idUsuario,boolean estado);
 	
-	
+	//vid 48 - p23
+	public void changeStatusActividad(int idActividad,boolean estado);
 }
